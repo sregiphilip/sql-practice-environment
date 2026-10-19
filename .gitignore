@@ -1,0 +1,5 @@
+my_answers.md
+my_answers.json
+history/
+__pycache__/
+.DS_Store

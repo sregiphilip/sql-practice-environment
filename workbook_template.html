@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SQL Practice Environment</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --panel: #ffffff; --ink: #1c1c1a; --muted: #6b6b66; --line: #e3e2dc;
+    --accent: #1f6f4a; --accent-ink: #ffffff; --accent-soft: #e5f2eb; --code-bg: #fbfbf9;
+    --err: #b3261e; --err-bg: #fdecea; --hover: #f0efea; --null: #a3a29c; --draft: #c98a12;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161615; --panel: #1f1f1d; --ink: #ecebe6; --muted: #9b9a94; --line: #34332f;
+      --accent: #3fae7a; --accent-ink: #0d1a13; --accent-soft: #1d3328; --code-bg: #1a1a18;
+      --err: #ff8a80; --err-bg: #3a1d1b; --hover: #2a2a27; --null: #6b6a65; --draft: #e0a93a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  code, textarea.sql, table.res { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  header { padding: 12px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: var(--panel); }
+  header h1 { font-size: 16px; margin: 0; }
+  #status { color: var(--muted); font-size: 13px; }
+  #progress { color: var(--muted); font-size: 13px; }
+  .spacer { flex: 1; }
+  .layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 54px); }
+  aside { border-right: 1px solid var(--line); padding: 12px 12px 24px; overflow: auto; }
+  .grp { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 14px 8px 4px; }
+  .grp:first-child { margin-top: 2px; }
+  .nav { display: flex; align-items: flex-start; gap: 8px; width: 100%; text-align: left; border: none; background: none; color: var(--ink);
+    font: inherit; font-size: 13px; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
+  .nav:hover { background: var(--hover); }
+  .nav.active { background: var(--accent-soft); }
+  .dot { flex: none; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--muted); margin-top: 5px; }
+  .dot.draft { background: var(--draft); border-color: var(--draft); }
+  .dot.done { background: var(--accent); border-color: var(--accent); }
+  .side-h { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 0 8px; }
+  .qstrip { position: sticky; top: 0; z-index: 2; display: flex; gap: 4px 14px; flex-wrap: wrap; align-items: center;
+    margin: -18px -24px 14px; padding: 8px 24px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .qgrp { display: inline-flex; align-items: center; gap: 3px; }
+  .qgrp > b { font-size: 12.5px; color: var(--muted); margin-right: 3px; }
+  .chip { display: inline-flex; align-items: center; gap: 5px; font: inherit; font-size: 12.5px; font-weight: 600; padding: 2px 9px;
+    border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); cursor: pointer; }
+  .chip:hover { background: var(--hover); }
+  .chip.active { border-color: var(--accent); background: var(--accent-soft); }
+  .chip .dot { margin-top: 0; }
+  .tbl { margin: 12px 8px 0; }
+  details.schema { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 10px; }
+  details.schema summary { cursor: pointer; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 0 8px; }
+  .tbl { margin: 10px 8px 0; }
+  .tbl-head { display: flex; justify-content: space-between; }
+  .tbl-name { font-weight: 600; font-family: ui-monospace, Menlo, monospace; cursor: pointer; font-size: 13px; }
+  .tbl-name:hover { color: var(--accent); }
+  .tbl-rows { color: var(--muted); font-size: 12px; }
+  .tbl-desc { color: var(--muted); font-size: 12px; margin: 1px 0 3px; }
+  .fb { margin-top: 10px; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); font-size: 13.5px; }
+  .fb.correct { border-color: var(--accent); background: var(--accent-soft); }
+  .fb.alt { border-color: var(--draft); }
+  .fb.wrong, .fb.none { border-color: var(--err); background: var(--err-bg); }
+  .fb .hd { font-weight: 600; margin-bottom: 2px; }
+  .fb ul { margin: 4px 0 0; padding-left: 18px; }
+  .hint { margin-top: 8px; padding: 8px 12px; border-left: 3px solid var(--draft); background: var(--panel); font-size: 13.5px; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+  .cols { list-style: none; margin: 3px 0 0; padding: 0 0 0 10px; border-left: 2px solid var(--line); }
+  .cols li { font-size: 12px; display: flex; justify-content: space-between; gap: 8px; cursor: pointer; }
+  .cols li:hover .c { color: var(--accent); }
+  .cols .t { color: var(--muted); font-size: 11px; }
+  .data-notes { font-size: 12px; color: var(--muted); margin: 10px 8px 0; }
+  .data-notes ul { padding-left: 16px; margin: 4px 0; }
+  main { padding: 18px 24px 60px; min-width: 0; max-width: 1100px; }
+  .crumb { color: var(--muted); font-size: 12.5px; }
+  h2.item { font-size: 19px; margin: 4px 0 6px; line-height: 1.35; }
+  .context { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; color: var(--muted); font-size: 13px; }
+  .context ul { margin: 4px 0 0; padding-left: 18px; }
+  .context li.me { color: var(--ink); font-weight: 600; }
+  .step { margin-top: 18px; }
+  .step label { display: block; font-weight: 600; font-size: 13.5px; margin-bottom: 5px; }
+  .step label span { font-weight: 400; color: var(--muted); }
+  textarea { width: 100%; padding: 10px 12px; background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; font: inherit; resize: vertical; }
+  textarea.sql { background: var(--code-bg); font-size: 13.5px; line-height: 1.5; min-height: 210px; tab-size: 2; }
+  textarea.prose { min-height: 70px; }
+  textarea.long { min-height: 260px; }
+  textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  .bar { display: flex; gap: 8px; align-items: center; margin: 8px 0; flex-wrap: wrap; }
+  button.btn { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line);
+    background: var(--panel); color: var(--ink); cursor: pointer; }
+  button.btn:hover { background: var(--hover); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { background: var(--accent); filter: brightness(1.08); }
+  button:disabled { opacity: .5; cursor: default; }
+  .meta { color: var(--muted); font-size: 12.5px; }
+  .err { background: var(--err-bg); color: var(--err); padding: 10px 12px; border-radius: 6px; white-space: pre-wrap; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  .res-wrap { overflow: auto; max-height: 50vh; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+  table.res { border-collapse: collapse; font-size: 12.5px; width: max-content; min-width: 100%; }
+  table.res th, table.res td { padding: 5px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+  table.res th { position: sticky; top: 0; background: var(--panel); font-weight: 600; }
+  table.res th .ty { display: block; font-weight: 400; color: var(--muted); font-size: 10.5px; }
+  table.res td.num { text-align: right; }
+  table.res td.null { color: var(--null); font-style: italic; }
+  .status-row { display: flex; gap: 6px; align-items: center; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .seg button { font: inherit; font-size: 12.5px; border: none; background: var(--panel); color: var(--muted); padding: 5px 10px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  kbd { font-family: inherit; font-size: 11px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; }
+  .saved { color: var(--muted); font-size: 12px; }
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { border-right: none; border-bottom: 1px solid var(--line); max-height: 40vh; }
+    header, main { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Exercise 2 · SQL &amp; Data Analysis workbook</h1>
+  <span id="status">Loading PostgreSQL…</span>
+  <span class="spacer"></span>
+  <span id="progress"></span>
+  <span id="sync" class="meta"></span>
+</header>
+<div class="layout">
+  <aside>
+    <div class="side-h">Tables</div>
+      <div id="schema"></div>
+      <div class="data-notes">
+        About the fake data:
+        <ul>
+          <li>Clean: no planted NULLs, duplicates or messy values.</li>
+          <li><code>verified_at</code> is only filled when <code>status = 'Verified'</code>.</li>
+          <li>Statuses: Verified, Pending, In Review, Rejected.</li>
+          <li>Each business onboards once. Some rejected businesses re-applied within the same month, so a business can have more than one application.</li>
+          <li>Data covers Oct 2025 – Jun 2026.</li>
+        </ul>
+        Engine: real PostgreSQL (17, via PGlite) running in your browser.
+      </div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script id="csv-applications" type="text/plain">/*__applications__*/</script>
+<script id="csv-merchants" type="text/plain">/*__merchants__*/</script>
+<script id="csv-transactions" type="text/plain">/*__transactions__*/</script>
+
+<script id="check-data" type="application/json">/*__checkdata__*/</script>
+
+<script type="module">
+import { PGlite } from 'https://cdn.jsdelivr.net/npm/@electric-sql/pglite@0.2.17/dist/index.js';
+
+const TABLES = {
+  applications: { desc: 'Tracks the KYB onboarding funnel.', cols: { app_id: 'INTEGER', business_id: 'INTEGER', created_at: 'TIMESTAMP', status: 'VARCHAR', verified_at: 'TIMESTAMP' } },
+  merchants: { desc: 'Contains merchant profiles and assigned account managers.', cols: { merchant_id: 'INTEGER', business_name: 'VARCHAR', risk_level: 'VARCHAR', account_manager: 'VARCHAR' } },
+  transactions: { desc: 'Contains processed payment transactions.', cols: { txn_id: 'VARCHAR', merchant_id: 'INTEGER', amount: 'NUMERIC(12,2)', processed_at: 'TIMESTAMP', requires_review: 'BOOLEAN' } },
+};
+
+// ---------------------------------------------------------------- questions
+const Q1 = ['How many unique businesses initiated the KYB process?',
+  'Of those businesses, what percentage reached Verified status?',
+  'What was the average time, in hours, to reach Verified status?'];
+const Q2 = ['How many distinct merchants have a High risk level?',
+  'For those merchants, what was the total transaction volume?',
+  'What amount and percentage of that volume came from transactions where requires_review = TRUE?'];
+const Q5 = ['How would you help them build this capability over their first 60 days?',
+  'What should they understand themselves rather than delegate to AI?',
+  'What workflow, prompts, templates, or resources would you give them?',
+  'How would you prevent incorrect queries or misleading conclusions from being used in business decisions?',
+  'How would you determine whether the enablement effort was working?',
+  'Include one example of how you would coach a teammate from a business question to a validated data output.'];
+
+const GROUPS = [
+  { title: '1. March onboarding cohort', intro: 'During March 2026:', list: Q1,
+    items: Q1.map((q, i) => ({ id: `q1${'abc'[i]}`, short: `1${'abc'[i]}`, q, kind: 'sql', idx: i })) },
+  { title: '2. High-risk transaction exposure', list: Q2,
+    items: Q2.map((q, i) => ({ id: `q2${'abc'[i]}`, short: `2${'abc'[i]}`, q, kind: 'sql', idx: i })) },
+  { title: '3. Account-manager portfolio ranking',
+    intro: 'For merchants managed by Sarah and James, rank each merchant within the respective account manager’s portfolio by all-time transaction volume.',
+    list: ['Account manager', 'Merchant business name', 'Total transaction volume', 'Rank within the account manager’s portfolio, where 1 is the highest volume'], listLabel: 'Your output should include:',
+    items: [{ id: 'q3', short: '3', q: 'For merchants managed by Sarah and James, rank each merchant within the respective account manager’s portfolio by all-time transaction volume.', kind: 'sql' }] },
+  { title: '4. Monthly and cumulative portfolio performance',
+    intro: 'For merchants managed by Sarah and James, show monthly transaction volume by account manager and include a running total of cumulative volume.',
+    list: ['Month', 'Account manager', 'Monthly transaction volume', 'Cumulative transaction volume'], listLabel: 'Your output should include:',
+    items: [{ id: 'q4', short: '4', q: 'For merchants managed by Sarah and James, show monthly transaction volume by account manager and include a running total of cumulative volume.', kind: 'sql' }] },
+  { title: '5. Helping a team become data self-sufficient',
+    intro: 'Assume you manage two strong Operations team members who understand the business but have limited SQL experience. You want them to become more resourceful and able to pull and validate routine data independently using AI and LLM tools.',
+    list: Q5,
+    items: Q5.map((q, i) => ({ id: `q5${'abcdef'[i]}`, short: `5${'abcdef'[i]}`, q, kind: 'text', idx: i })) },
+  { title: 'Using AI in this work',
+    intro: 'After completing the exercise, briefly explain how you would use AI as a tool in this type of work. We are interested in where AI would help, what you would ask it to do, and how you would review its output before relying on it.',
+    items: [{ id: 'ai', short: 'AI', q: 'How would you use AI as a tool in this type of work?', kind: 'text' }] },
+];
+// Only the SQL questions are shown for now; Q5 and the AI question stay defined for later.
+const ITEMS = GROUPS.flatMap(g => g.items.map(it => ({ ...it, group: g }))).filter(it => it.kind === 'sql');
+
+// ---------------------------------------------------------------- answer key (base64 so it isn't readable at a glance)
+// Expected results are stored only as salted SHA-256 fingerprints (check_data.json), so the page can
+// confirm a match without containing the answers.
+const CHECKDATA = JSON.parse(document.getElementById('check-data').textContent);
+
+// ---------------------------------------------------------------- state
+// ?sandbox in the URL: a throwaway workbook (separate storage, never reads or writes my_answers.*)
+const SANDBOX = new URLSearchParams(location.search).has('sandbox');
+const KEY = SANDBOX ? 'ex2wb:sandbox' : 'ex2wb:v1';
+let state = { current: 'q1a', items: {} };
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.items) state = s; } catch {}
+if (!ITEMS.some(it => it.id === state.current)) state.current = ITEMS[0].id;
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} if (!SANDBOX && typeof scheduleSync === 'function') scheduleSync(); };
+const touch = (r) => { r.updatedAt = Date.now(); };
+const rec = (id) => (state.items[id] ??= { approach: '', sql: '', takeaway: '', answer: '', status: 'todo', result: null });
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let conn = null;
+let activeSql = null;
+
+// ---------------------------------------------------------------- nav
+function statusOf(id) {
+  const r = state.items[id];
+  if (!r) return 'todo';
+  if (r.status === 'done') return 'done';
+  if (r.status === 'draft' || r.approach || r.sql || r.takeaway || r.answer) return 'draft';
+  return 'todo';
+}
+function renderNav() {
+  const nav = $('qstrip'); if (!nav) return;
+  nav.innerHTML = '';
+  for (const g of GROUPS) {
+    const its = ITEMS.filter(it => it.group === g || it.group.title === g.title);
+    if (!its.length) continue;
+    const grp = document.createElement('span'); grp.className = 'qgrp';
+    grp.innerHTML = `<b title="${esc(g.title)}">Q${g.title.split('.')[0]}</b>`;
+    for (const it of its) {
+      const b = document.createElement('button');
+      b.className = 'chip' + (it.id === state.current ? ' active' : '');
+      b.title = it.q;
+      b.innerHTML = `<span class="dot ${statusOf(it.id)}"></span>${its.length > 1 ? it.short.slice(-1) : 'SQL'}`;
+      b.onclick = () => go(it.id);
+      grp.appendChild(b);
+    }
+    nav.appendChild(grp);
+  }
+  const done = ITEMS.filter(it => statusOf(it.id) === 'done').length;
+  $('progress').textContent = `${done} / ${ITEMS.length} verified`;
+}
+function go(id) { state.current = id; save(); renderItem(); window.scrollTo(0, 0); }
+
+// ---------------------------------------------------------------- item view
+function renderItem() {
+  const i = ITEMS.findIndex(it => it.id === state.current);
+  const it = ITEMS[i < 0 ? 0 : i];
+  const r = rec(it.id);
+  const g = it.group;
+  const ctxList = g.list ? `${g.listLabel ? `<div style="margin-top:6px">${g.listLabel}</div>` : ''}<ul>${g.list.map((x, k) =>
+    `<li class="${!g.listLabel && k === it.idx ? 'me' : ''}">${esc(x)}</li>`).join('')}</ul>` : '';
+  const context = `<div class="context"><b>${esc(g.title)}</b>${g.intro ? `<div>${esc(g.intro)}</div>` : ''}${ctxList}</div>`;
+
+  let body;
+  if (it.kind === 'sql') {
+    body = `
+      <div class="step"><label for="f-sql">Your SQL</label>
+        <textarea id="f-sql" class="sql" spellcheck="false" placeholder="SELECT …">${esc(r.sql)}</textarea>
+        <div class="bar">
+          <button class="btn primary" id="run" ${conn ? '' : 'disabled'}>Run</button>
+          <button class="btn" id="check">Check my answer</button>
+        </div>
+        <div class="meta"><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Enter</kbd> runs the query, or only the selected text if any is selected. Your last full run is saved, and that's what gets checked.</div>
+        <div id="fb"></div>
+        <div class="meta" id="meta" style="margin-top:8px"></div>
+        <div id="out"></div></div>`;
+  } else {
+    body = `<div class="step"><label for="f-answer">Your answer</label>
+      <textarea id="f-answer" class="long">${esc(r.answer)}</textarea>
+      <div class="note">There's no automatic check for written answers. When you're ready, ask Claude in chat to "review ${esc(it.short)}".</div></div>`;
+  }
+
+  const prev = ITEMS[i - 1], next = ITEMS[i + 1];
+  $('main').innerHTML = `
+    <div class="qstrip" id="qstrip"></div>
+    <div class="crumb">Question ${esc(it.short)} of Exercise 2</div>
+    <h2 class="item">${esc(it.q)}</h2>
+    ${context}
+    ${body}
+    <div class="status-row">
+      <span class="meta">Status</span>
+      <div class="seg" id="seg">
+        <button data-s="todo">Not started</button><button data-s="draft">In progress</button><button data-s="done">Verified ✓</button>
+      </div>
+      <span class="saved" id="saved"></span>
+      <span class="spacer"></span>
+      ${prev ? `<button class="btn" id="prev">← ${esc(prev.short)}</button>` : ''}
+      ${next ? `<button class="btn" id="next">${esc(next.short)} →</button>` : ''}
+    </div>`;
+
+  renderNav();
+  for (const f of ['approach', 'sql', 'takeaway', 'answer']) {
+    const el = $('f-' + f); if (!el) continue;
+    el.addEventListener('input', () => {
+      r[f] = el.value; touch(r);
+      if (r.status === 'todo') r.status = 'draft';
+      save(); renderNav(); paintSeg(); flashSaved();
+    });
+  }
+  const sqlEl = $('f-sql');
+  if (sqlEl) {
+    sqlEl.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); run(); }
+      else if (e.key === 'Tab') { e.preventDefault(); sqlEl.setRangeText('  ', sqlEl.selectionStart, sqlEl.selectionEnd, 'end'); r.sql = sqlEl.value; save(); }
+    });
+    activeSql = sqlEl;
+    $('run').onclick = () => run();
+    $('check').onclick = () => { check(it.id, true); };
+    if (r.check) renderFeedback(r.check);
+    if (r.result) showSaved(r.result);
+  } else activeSql = null;
+  document.querySelectorAll('#seg button').forEach(b => b.onclick = () => { r.status = b.dataset.s; touch(r); save(); renderNav(); paintSeg(); });
+  paintSeg();
+  if (prev) $('prev').onclick = () => go(prev.id);
+  if (next) $('next').onclick = () => go(next.id);
+
+  function paintSeg() {
+    const s = statusOf(it.id);
+    document.querySelectorAll('#seg button').forEach(b => b.classList.toggle('on', b.dataset.s === s));
+  }
+}
+let savedTimer;
+function flashSaved() { const s = $('saved'); if (!s) return; s.textContent = 'Saved'; clearTimeout(savedTimer); savedTimer = setTimeout(() => s.textContent = '', 1200); }
+
+// ---------------------------------------------------------------- schema
+function renderSchema(counts) {
+  const el = $('schema'); el.innerHTML = '';
+  for (const [name, t] of Object.entries(TABLES)) {
+    const d = document.createElement('div'); d.className = 'tbl';
+    d.innerHTML = `<div class="tbl-head"><span class="tbl-name" title="Preview 50 rows">${name}</span><span class="tbl-rows">${counts[name] ? counts[name].toLocaleString() + ' rows' : ''}</span></div><div class="tbl-desc">${t.desc}</div>`;
+    d.querySelector('.tbl-name').onclick = () => run(`SELECT * FROM ${name} LIMIT 50`, true);
+    const ul = document.createElement('ul'); ul.className = 'cols';
+    for (const [c, ty] of Object.entries(t.cols)) {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="c">${c}</span><span class="t">${ty}</span>`;
+      li.onclick = () => { if (!activeSql) return; activeSql.setRangeText(c, activeSql.selectionStart, activeSql.selectionEnd, 'end'); activeSql.focus(); activeSql.dispatchEvent(new Event('input')); };
+      ul.appendChild(li);
+    }
+    d.appendChild(ul); el.appendChild(d);
+  }
+}
+
+// ---------------------------------------------------------------- query + results
+// Postgres type OIDs -> names. Timestamps, numerics, bigints and intervals come back as the exact
+// text Postgres prints (like psql) rather than being converted to JS dates/floats.
+const OID = { 16: 'BOOLEAN', 19: 'NAME', 20: 'BIGINT', 21: 'SMALLINT', 23: 'INTEGER', 25: 'TEXT', 700: 'REAL', 701: 'DOUBLE PRECISION',
+  1042: 'CHAR', 1043: 'VARCHAR', 1082: 'DATE', 1083: 'TIME', 1114: 'TIMESTAMP', 1184: 'TIMESTAMPTZ', 1186: 'INTERVAL', 1700: 'NUMERIC' };
+const NUMERIC_OIDS = new Set([20, 21, 23, 700, 701, 1700]);
+const RAW = (v) => v;
+const PARSERS = { 20: RAW, 1700: RAW, 1082: RAW, 1083: RAW, 1114: RAW, 1184: RAW, 1186: RAW };
+async function pgQuery(pg, sql) {
+  const results = await pg.exec(sql, { rowMode: 'array', parsers: PARSERS });
+  const last = [...results].reverse().find(r => r.fields?.length) || { fields: [], rows: [] };
+  return { fields: last.fields.map(f => ({ name: f.name, oid: f.dataTypeID, type: OID[f.dataTypeID] || `oid ${f.dataTypeID}` })), rows: last.rows };
+}
+function fmt(v, oid) {
+  if (v === null || v === undefined) return { text: 'NULL', cls: 'null' };
+  if (typeof v === 'boolean') return { text: v ? 'true' : 'false', cls: '' };
+  if (v instanceof Date) return { text: v.toISOString(), cls: '' };
+  if (typeof v === 'object') { try { return { text: JSON.stringify(v), cls: '' }; } catch {} }
+  return { text: String(v), cls: NUMERIC_OIDS.has(oid) ? 'num' : '' };
+}
+
+async function run(sqlOverride, isPreview) {
+  if (!conn) return;
+  const el = activeSql;
+  let sql = sqlOverride;
+  let partial = false;
+  if (!sql) {
+    if (!el) return;
+    const sel = el.value.slice(el.selectionStart, el.selectionEnd);
+    partial = !!sel.trim();
+    sql = partial ? sel : el.value;
+  }
+  sql = sql.trim(); if (!sql) return;
+  if (!$('out')) {  // preview from sidebar on a text-only item
+    if (!isPreview) return;
+  }
+  const out = $('out'), meta = $('meta'), btn = $('run');
+  if (!out) { alert('Open a SQL question (1a–4) to preview tables.'); return; }
+  if (btn) btn.disabled = true;
+  meta.textContent = 'Running…';
+  const t0 = performance.now();
+  let result;
+  try {
+    const res = await pgQuery(conn, sql);
+    const rows = res.rows.map(r => res.fields.map((f, k) => fmt(r[k], f.oid)));
+    result = { fields: res.fields.map(f => ({ name: f.name, type: f.type })), rows, ms: Math.round(performance.now() - t0) };
+  } catch (err) {
+    result = { error: String(err.message || err) };
+  }
+  if (btn) btn.disabled = false;
+  renderResult(result, isPreview ? 'Table preview (not saved)' : partial ? 'Selection only (not saved)' : '');
+  if (!isPreview && !partial) {
+    const r = rec(state.current);
+    r.result = { ...result, rows: result.rows ? result.rows.slice(0, 2000) : undefined, rowCount: result.rows?.length, sql, ranAt: new Date().toISOString() };
+    if (r.status === 'todo') r.status = 'draft';
+    touch(r); save(); renderNav();
+  }
+}
+function renderResult(res, note) {
+  const out = $('out'), meta = $('meta');
+  if (res.error) { meta.textContent = note || ''; out.innerHTML = `<div class="err">${esc(res.error)}</div>`; return; }
+  const n = res.rowCount ?? res.rows.length;
+  meta.textContent = [note, `${n.toLocaleString()} row${n === 1 ? '' : 's'}`, res.ms != null ? `${res.ms} ms` : '',
+    n > res.rows.length || res.rows.length > 1000 ? `showing first ${Math.min(res.rows.length, 1000)}` : ''].filter(Boolean).join(' · ');
+  const head = res.fields.map(f => `<th>${esc(f.name)}<span class="ty">${esc(f.type)}</span></th>`).join('');
+  const body = res.rows.slice(0, 1000).map(r => '<tr>' + r.map(c => `<td class="${c.cls}">${esc(c.text)}</td>`).join('') + '</tr>').join('');
+  out.innerHTML = `<div class="res-wrap"><table class="res"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function showSaved(saved) {
+  renderResult(saved, saved.ranAt ? `Last run ${new Date(saved.ranAt).toLocaleString()}` : '');
+}
+
+// ---------------------------------------------------------------- checking
+function decimals(text) { const m = String(text).match(/\.(\d+)/); return m ? m[1].length : 0; }
+// Month labels in any common format -> 'yyyy-mm': 2026-03, 2026-03-01 00:00:00, 2026/03, 03/2026, Mar 2026, March 2026, 2026 Mar
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+function toYearMonth(u) {
+  let m;
+  const pad = (x) => String(x).padStart(2, '0');
+  if ((m = u.match(/^(\d{4})[-\/](\d{1,2})\b/))) return `${m[1]}-${pad(m[2])}`;
+  if ((m = u.match(/^(\d{1,2})[-\/](\d{4})$/))) return `${m[2]}-${pad(m[1])}`;
+  if ((m = u.match(/^([a-z]{3,9})\.?[\s,-]+(\d{4})$/)) && MONTHS.indexOf(m[1].slice(0, 3)) >= 0) return `${m[2]}-${pad(MONTHS.indexOf(m[1].slice(0, 3)) + 1)}`;
+  if ((m = u.match(/^(\d{4})[\s,-]+([a-z]{3,9})\.?$/)) && MONTHS.indexOf(m[2].slice(0, 3)) >= 0) return `${m[1]}-${pad(MONTHS.indexOf(m[2].slice(0, 3)) + 1)}`;
+  return null;
+}
+// The ways a result cell could be written: a number at its own rounding, a month, or text
+function cellKeys(text) {
+  const t = String(text).trim(), keys = [];
+  if (/^[-+]?\$?[\d,]*\.?\d+%?$/.test(t)) {
+    const u = parseFloat(t.replace(/[,%$]/g, ''));
+    if (isFinite(u)) keys.push('n:' + u.toFixed(Math.min(decimals(t), 6)));
+  }
+  const ym = toYearMonth(t.toLowerCase());
+  if (ym) keys.push('m:' + ym);
+  keys.push('s:' + t.toLowerCase());
+  return keys;
+}
+const enc = new TextEncoder();
+async function fingerprint(id, key) {
+  const buf = await crypto.subtle.digest('SHA-256', enc.encode(CHECKDATA.salt + '|' + id + '|' + key));
+  return Array.from(new Uint8Array(buf).slice(0, 6), b => b.toString(16).padStart(2, '0')).join('');
+}
+// Rows match in any order, columns in any order, extra columns allowed
+function rowMatches(userRow, expRow) {
+  const used = new Set();
+  return expRow.every(cell => {
+    for (let k = 0; k < userRow.length; k++) {
+      if (!used.has(k) && cell.some(h => userRow[k].has(h))) { used.add(k); return true; }
+    }
+    return false;
+  });
+}
+function resultMatches(userRows, v) {
+  if (userRows.length !== v.rowCount) return false;
+  const used = new Set();
+  return v.rows.every(er => {
+    for (let k = 0; k < userRows.length; k++) {
+      if (!used.has(k) && rowMatches(userRows[k], er)) { used.add(k); return true; }
+    }
+    return false;
+  });
+}
+async function check(id, userClicked) {
+  const r = rec(id), vs = CHECKDATA.checks[id]?.variants;
+  if (!vs) return;
+  let out;
+  if (!r.result) out = { verdict: 'none', label: 'Run your query first. The checker looks at your last full run.' };
+  else if (r.result.error) out = { verdict: 'none', label: 'Your last run returned an error, so there\'s nothing to check yet.' };
+  else {
+    const n = r.result.rowCount ?? r.result.rows.length;
+    const userRows = n === r.result.rows.length ? await Promise.all(r.result.rows.map(async row =>
+      Promise.all(row.map(async c => new Set(await Promise.all(cellKeys(c.text).map(k => fingerprint(id, k)))))))) : [];
+    const hit = vs.find(v => resultMatches(userRows, v));
+    if (hit) out = { verdict: hit.verdict, label: hit.label, note: hit.note || '' };
+    else {
+      out = { verdict: 'none', label: 'Doesn\'t match the expected answer.' };
+    }
+  }
+  out.sqlChecked = r.result?.sql; out.at = new Date().toISOString();
+  r.check = out; touch(r);
+  if (out.verdict === 'correct' || out.verdict === 'alt') r.status = 'done';
+  save(); renderNav(); renderItem();
+}
+function renderFeedback(c) {
+  const icon = { correct: '✓ Correct', alt: '≈ Defensible alternative', none: '✗ Not matching' }[c.verdict] || '✗ Not matching';
+  $('fb').innerHTML = `<div class="fb ${c.verdict}"><div class="hd">${icon}</div><div>${esc(c.label)}</div>
+    ${c.note ? `<div style="margin-top:4px">${esc(c.note)}</div>` : ''}
+    ${c.tips ? `<ul>${c.tips.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+    ${c.sqlChecked && rec(state.current).sql.trim() !== c.sqlChecked ? `<div class="meta" style="margin-top:4px">Your SQL has changed since this check. Run it and check again.</div>` : ''}</div>`;
+}
+// ---------------------------------------------------------------- export
+function mdTable(res, max = 40) {
+  if (!res) return '_Not run yet._\n';
+  if (res.error) return 'Error:\n\n```\n' + res.error + '\n```\n';
+  let md = '| ' + res.fields.map(f => f.name).join(' | ') + ' |\n|' + res.fields.map(() => '---').join('|') + '|\n';
+  for (const r of res.rows.slice(0, max)) md += '| ' + r.map(c => c.text.replace(/\|/g, '\\|')).join(' | ') + ' |\n';
+  const n = res.rowCount ?? res.rows.length;
+  if (n > max) md += `\n_${n} rows in total; first ${max} shown._\n`;
+  return md;
+}
+// ---------------------------------------------------------------- auto-save to disk
+// serve.py writes my_answers.md and my_answers.json next to this page on every change.
+let syncTimer = null;
+function syncPayload() {
+  const verdictText = { correct: 'Correct', alt: 'Defensible alternative', wrong: 'Common mistake', none: 'Not matching yet' };
+  return {
+    updated: new Date().toLocaleString(),
+    items: ITEMS.map(it => {
+      const r = state.items[it.id] || {};
+      const res = r.result;
+      return {
+        short: it.short, group: it.group.title, question: it.q,
+        sql: (r.sql || '').trim(),
+        status: statusOf(it.id),
+        check: r.check ? `${verdictText[r.check.verdict]}: ${r.check.label}` : '',
+        result: res && !res.error && res.fields ? { columns: res.fields.map(f => f.name), rows: res.rows.slice(0, 10).map(rw => rw.map(c => c.text)), rowCount: res.rowCount ?? res.rows.length } : null,
+        error: res?.error || '',
+      };
+    }),
+  };
+}
+function renderSync(text) { $('sync').textContent = text; }
+function scheduleSync() {
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(syncNow, 1500);
+}
+async function syncNow() {
+  try {
+    const r = await fetch('save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ state, doc: syncPayload() }) });
+    if (r.status === 409) { renderSync('Save refused: the file has answers and this page is empty. Reload to restore them.'); return; }
+    if (!r.ok) throw new Error(r.status);
+    renderSync(`Saved to my_answers.md ${new Date().toLocaleTimeString()}`);
+  } catch {
+    renderSync('Not saving to file: open the page via serve.py (answers are still kept in this browser)');
+  }
+}
+window.syncPayload = syncPayload;
+
+// ---------------------------------------------------------------- boot
+if (!SANDBOX) {
+  try {
+    const r = await fetch('my_answers.json', { cache: 'no-store' });
+    const file = r.ok ? await r.json() : null;
+    const hasSql = (x) => !!(x && (x.sql || '').trim());
+    if (Object.values(state.items).some(hasSql)) {
+      // keep a copy of what this browser had before merging, in history/
+      await fetch('backup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(state) }).catch(() => {});
+    }
+    if (file?.items) {
+      for (const [id, f] of Object.entries(file.items)) {
+        const mine = state.items[id];
+        if (!hasSql(mine) || (f.updatedAt || 0) > (mine.updatedAt || 0)) state.items[id] = f;
+      }
+      if (!Object.values(state.items).length) state.current = file.current;
+    }
+    if (!ITEMS.some(it => it.id === state.current)) state.current = ITEMS[0].id;
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+  } catch {}
+}
+renderItem(); renderSchema({}); renderSync(SANDBOX ? 'Sandbox: not saving' : '');
+try {
+  const c = await PGlite.create();
+  $('status').textContent = 'Loading tables…';
+  const counts = {};
+  for (const [name, t] of Object.entries(TABLES)) {
+    const cols = Object.entries(t.cols).map(([k, ty]) => `${k} ${ty}`).join(', ');
+    await c.exec(`CREATE TABLE ${name} (${cols})`);
+    await c.query(`COPY ${name} FROM '/dev/blob' WITH (FORMAT csv, HEADER true)`, [], { blob: new Blob([$('csv-' + name).textContent.trim() + '\n']) });
+    counts[name] = Number((await c.query(`SELECT COUNT(*)::int AS n FROM ${name}`)).rows[0].n);
+  }
+  conn = c;
+  renderSchema(counts);
+  $('status').textContent = 'Ready';
+  if ($('run')) $('run').disabled = false;
+} catch (err) {
+  $('status').textContent = 'Failed to load PostgreSQL (needs internet for cdn.jsdelivr.net)';
+  console.error(err);
+}
+</script>
+</body>
+</html>

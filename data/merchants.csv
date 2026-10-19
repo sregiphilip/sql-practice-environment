@@ -1,0 +1,601 @@
+merchant_id,business_name,risk_level,account_manager
+890,FastPay Solutions,High,Sarah
+456,SecureTrust Bank,Low,Matt
+123,NeoFin Tech,High,James
+745,Global Remit,Medium,Sarah
+425,FastWallet Partners,Low,Chen
+427,VectorFin Tech,Medium,Priya
+976,IronRemit Tech,Medium,James
+721,GoldenLabs Inc,Medium,Priya
+195,GoldenCommerce Ltd,Low,Matt
+702,PeakWallet Co,Medium,Priya
+842,VectorCash Bank,Medium,James
+819,GoldenTrade Co,Medium,Daniel
+441,NovaCargo Co,Medium,Matt
+672,OrbitCoin Partners,Low,Chen
+961,UrbanCash Pty Ltd,High,Sarah
+865,SecureFlow Inc,Medium,James
+966,ApexMint Solutions,High,Sarah
+807,VectorSupply Ltd,Low,Matt
+111,LumenCapital Group,Low,Sarah
+826,OrbitBridge Solutions,High,Priya
+791,OrbitMint Bank,Low,Chen
+919,GlobalTrust Pty Ltd,Low,Priya
+354,HarborLogistics Group,Medium,Sarah
+121,SilverCargo Bank,Medium,Daniel
+556,OrbitLabs Pty Ltd,High,Sarah
+845,NorthWallet Partners,Low,Chen
+736,ZenPay Group,Low,Sarah
+599,SecureLedger Partners,Medium,Daniel
+703,AtlasCapital Holdings,Low,Daniel
+784,GlobalBridge Partners,High,Matt
+525,IronBridge Tech,Medium,James
+289,PacificFlow Holdings,Low,Sarah
+201,GoldenCargo Partners,Medium,Priya
+765,PrimeCommerce Bank,Medium,Priya
+167,GlobalMint Pty Ltd,Medium,Daniel
+103,NeoWallet Inc,Medium,Sarah
+705,GoldenLabs Tech,Low,James
+303,EchoLedger Pty Ltd,High,Daniel
+896,PeakFlow Bank,Medium,Sarah
+861,NeoFin Ltd,Medium,Chen
+523,PrimeBridge Ltd,Low,Daniel
+351,BrightCapital Partners,Medium,Matt
+329,SilverRemit Partners,Medium,Chen
+554,LumenCapital Bank,Medium,Matt
+793,SecureCoin Inc,Low,Sarah
+472,OrbitExchange Solutions,Low,James
+199,RapidLogistics Pty Ltd,Low,Priya
+446,FastCoin Tech,Medium,Daniel
+311,CedarMint Pty Ltd,Medium,Chen
+892,SwiftPay Pty Ltd,High,Chen
+743,GlobalSupply Pty Ltd,High,Daniel
+466,EchoCoin Tech,Low,Priya
+266,PacificBridge Holdings,Low,Matt
+654,SwiftWallet Partners,Medium,Daniel
+636,ClearExchange Co,Medium,Matt
+325,SwiftCapital Solutions,Medium,Daniel
+560,GoldenFlow Holdings,High,James
+434,ZenCoin Pty Ltd,Medium,Daniel
+431,ClearWallet Solutions,Medium,Chen
+387,VectorLogistics Partners,Low,Sarah
+373,ClearTrade Bank,Low,James
+465,NeoLabs Partners,Medium,James
+106,EchoLabs Bank,Low,Matt
+298,PacificCash Inc,High,Daniel
+837,NeoRemit Pty Ltd,Low,Matt
+768,NorthCargo Partners,Medium,Chen
+548,NorthFlow Bank,Medium,Chen
+389,PeakCommerce Inc,High,Matt
+418,PeakTrust Pty Ltd,High,Priya
+448,SilverCommerce Solutions,Medium,James
+202,RapidCargo Solutions,High,Matt
+760,EchoLedger Inc,Low,Matt
+510,PioneerPay Inc,High,Daniel
+606,PrimeLogistics Co,Low,Sarah
+181,IronRetail Inc,Low,Chen
+859,SecureCoin Holdings,Medium,Sarah
+321,NeoCargo Partners,Medium,Matt
+135,GoldenCash Holdings,Medium,Daniel
+646,ClearSupply Pty Ltd,Low,Daniel
+693,SwiftPay Solutions,Low,Daniel
+273,LumenCoin Ltd,High,Priya
+913,SwiftMint Co,High,James
+698,NorthMint Pty Ltd,High,Sarah
+831,AtlasFlow Co,Low,Chen
+980,UrbanRemit Solutions,Low,Chen
+264,SilverLabs Holdings,Low,Matt
+163,CedarMint Tech,Low,Priya
+381,SwiftTrust Bank,High,Priya
+166,CedarCargo Bank,Medium,Chen
+236,UrbanCommerce Tech,High,Matt
+502,PrimeWallet Bank,High,Sarah
+909,ClearMint Bank,High,James
+495,FastExchange Co,Medium,Sarah
+478,VectorBridge Co,Low,Matt
+176,RapidCash Inc,Low,Priya
+377,GlobalRemit Holdings,High,Daniel
+410,LumenCash Co,Low,Daniel
+647,LumenCoin Co,Low,Daniel
+631,NeoPay Partners,Medium,Priya
+740,BlueLabs Partners,High,Matt
+183,HarborTrust Tech,High,James
+221,ZenLedger Holdings,Low,Chen
+564,GlobalRemit Inc,Medium,Sarah
+319,ClearRetail Partners,Medium,Daniel
+720,SilverFin Ltd,Low,Priya
+846,SecureCoin Partners,Medium,Chen
+942,PacificTrade Bank,High,Sarah
+395,CoralRemit Bank,Medium,Priya
+196,EchoFin Bank,Low,Sarah
+249,UrbanBridge Pty Ltd,Medium,Priya
+419,NorthSupply Inc,Low,James
+888,SilverExchange Holdings,Medium,Matt
+811,GlobalLogistics Bank,High,Sarah
+563,AtlasCapital Bank,Low,Sarah
+177,ApexCommerce Solutions,High,Daniel
+972,CoralFin Holdings,Medium,Daniel
+487,PacificMint Holdings,High,James
+777,PioneerPay Group,High,Chen
+950,HarborMint Solutions,High,Sarah
+847,SwiftBridge Solutions,Low,Matt
+967,SwiftLogistics Ltd,Medium,James
+968,NovaLogistics Pty Ltd,High,Sarah
+104,AtlasCash Tech,High,Sarah
+993,SwiftTrade Holdings,Medium,Matt
+785,EchoLogistics Bank,Medium,Matt
+175,ClearLabs Holdings,Low,James
+895,RapidLogistics Ltd,High,Daniel
+509,PrimeLabs Solutions,Medium,Matt
+696,BrightLedger Partners,Low,James
+746,HarborBridge Inc,Medium,Sarah
+941,RapidRemit Pty Ltd,Medium,James
+417,SwiftLedger Ltd,Low,Daniel
+528,PeakRetail Tech,Low,Chen
+371,RapidMint Ltd,Low,Priya
+524,VectorRemit Group,Medium,Priya
+515,NovaRetail Bank,Medium,Daniel
+945,IronSupply Group,Medium,Matt
+489,LumenRetail Co,Medium,Priya
+117,CedarLogistics Pty Ltd,Medium,James
+579,SilverWallet Holdings,Medium,James
+516,GlobalLedger Pty Ltd,Low,James
+613,BrightCapital Ltd,High,Sarah
+433,PacificRetail Pty Ltd,Medium,Matt
+838,SwiftRetail Partners,Medium,James
+191,EchoPay Ltd,Medium,Priya
+238,SilverPay Tech,Low,James
+661,IronBridge Bank,High,Matt
+881,PioneerCapital Group,High,James
+863,PacificCommerce Solutions,Low,Matt
+223,ApexFin Bank,Low,Sarah
+673,SwiftLabs Partners,High,James
+232,RapidPay Partners,Medium,Daniel
+679,NeoCash Holdings,Medium,Priya
+985,NovaSupply Ltd,Low,Sarah
+488,CedarRetail Partners,Medium,Daniel
+164,GlobalLogistics Inc,High,Daniel
+237,BlueRetail Inc,Low,James
+732,NeoBridge Tech,Low,Priya
+965,PacificSupply Tech,Low,Sarah
+413,GoldenWallet Solutions,Medium,Daniel
+795,PioneerPay Bank,Low,Matt
+130,BrightBridge Co,High,Sarah
+962,IronCommerce Pty Ltd,Low,Chen
+116,AtlasCash Ltd,Low,James
+467,NorthLedger Inc,High,Daniel
+451,PeakCoin Holdings,Medium,Sarah
+386,NovaRetail Partners,Low,Matt
+171,GlobalCash Group,High,Matt
+715,CedarLabs Inc,High,Chen
+241,SwiftFlow Pty Ltd,Low,Sarah
+860,GoldenCommerce Inc,Low,Daniel
+269,SwiftCoin Group,High,James
+153,UrbanPay Co,Medium,James
+454,LumenCapital Partners,High,Chen
+429,PeakPay Solutions,High,Matt
+125,LumenCash Tech,Medium,James
+216,NeoCoin Tech,High,Matt
+334,PrimeTrade Bank,Medium,Daniel
+697,LumenWallet Solutions,Medium,Daniel
+526,ZenTrust Inc,Low,Daniel
+797,ApexCommerce Co,Low,Sarah
+436,CoralRemit Tech,High,Daniel
+609,NovaRemit Ltd,Medium,Sarah
+211,BlueRemit Pty Ltd,High,Sarah
+598,BrightPay Pty Ltd,Medium,Chen
+836,HarborFlow Solutions,Medium,Daniel
+581,EchoBridge Pty Ltd,Low,Matt
+144,VectorLabs Partners,Low,Daniel
+245,ZenWallet Inc,Low,Sarah
+476,CoralMint Partners,High,Matt
+327,PacificTrade Holdings,Medium,Matt
+957,RapidPay Bank,Low,James
+843,PacificRetail Inc,Low,Priya
+520,NorthMint Partners,High,James
+185,PioneerLabs Holdings,Low,Sarah
+500,EchoCoin Inc,Low,Priya
+591,PeakCash Pty Ltd,Medium,Priya
+561,SecureBridge Holdings,High,Matt
+583,ZenFin Pty Ltd,Low,James
+767,GlobalLogistics Ltd,Medium,Chen
+180,BluePay Co,Low,Chen
+804,IronWallet Solutions,High,Chen
+870,ApexCommerce Group,Low,James
+664,AtlasRemit Ltd,Medium,Matt
+317,HarborCapital Holdings,Medium,Priya
+261,CoralLogistics Group,Medium,Matt
+684,ClearSupply Bank,Medium,Sarah
+762,PioneerTrust Partners,Low,Sarah
+265,NeoCash Tech,High,Priya
+519,UrbanRetail Co,Medium,Chen
+285,GoldenCapital Partners,High,Priya
+883,GoldenLabs Group,Low,Chen
+996,FastSupply Partners,Medium,Sarah
+812,GoldenLedger Inc,High,Sarah
+136,PeakCapital Partners,Low,Daniel
+885,SummitExchange Tech,Low,James
+757,SecureMint Partners,Medium,Sarah
+783,BlueSupply Holdings,Low,Sarah
+867,IronCommerce Solutions,Low,Daniel
+718,OrbitCommerce Solutions,Medium,Sarah
+680,HarborLogistics Holdings,Medium,Chen
+402,SummitSupply Group,Medium,Priya
+620,AtlasCash Partners,Medium,James
+234,UrbanMint Bank,Medium,Priya
+268,SilverRemit Ltd,Low,Chen
+758,PioneerCoin Co,High,Chen
+735,HarborFlow Inc,Low,Priya
+610,CedarWallet Pty Ltd,Medium,Priya
+671,VectorCash Co,High,Sarah
+148,ApexCommerce Pty Ltd,High,Matt
+517,NorthRemit Partners,High,Daniel
+220,BrightMint Group,Low,Sarah
+565,ZenSupply Solutions,Medium,Matt
+813,GoldenWallet Bank,Low,Daniel
+102,NeoCommerce Holdings,Medium,Matt
+652,GlobalCommerce Solutions,Medium,Priya
+866,FastRemit Solutions,Low,Priya
+689,EchoBridge Inc,Low,Daniel
+748,EchoFin Inc,High,Matt
+415,FastExchange Pty Ltd,Low,Sarah
+538,PeakMint Ltd,Medium,James
+477,OrbitLabs Solutions,Medium,Chen
+322,PeakSupply Solutions,Low,Daniel
+589,SecureRetail Bank,High,Priya
+660,SummitRemit Pty Ltd,Medium,Matt
+182,SwiftCommerce Inc,Low,Matt
+385,PrimeSupply Group,Medium,Chen
+374,EchoWallet Group,Medium,Priya
+704,FastCoin Group,Medium,James
+213,RapidTrust Holdings,Medium,Chen
+615,HarborLabs Bank,High,Sarah
+862,UrbanLedger Ltd,Medium,Daniel
+917,AtlasRetail Group,High,Priya
+233,SummitSupply Tech,Low,Priya
+332,BrightCargo Pty Ltd,Low,Chen
+611,FastCommerce Solutions,Medium,Chen
+953,GoldenFin Inc,Medium,Matt
+894,OrbitRemit Co,High,Chen
+929,ApexPay Tech,High,Priya
+105,CoralRetail Co,Medium,Daniel
+798,EchoSupply Pty Ltd,Medium,Priya
+901,CedarCommerce Inc,Medium,Priya
+728,SecureLedger Tech,Low,Sarah
+816,SilverMint Group,Low,James
+964,BrightBridge Bank,Medium,James
+214,GoldenCoin Holdings,Low,Priya
+921,OrbitSupply Group,High,Chen
+259,HarborSupply Partners,Low,Matt
+426,VectorBridge Partners,Low,Priya
+802,SecureCash Ltd,High,Matt
+907,UrbanTrade Group,High,Priya
+558,SilverCommerce Co,Low,Matt
+307,FastMint Group,High,Sarah
+601,NorthTrust Co,High,Chen
+914,SummitCapital Solutions,Low,Matt
+231,AtlasRetail Tech,Low,James
+597,GlobalCapital Partners,High,Matt
+920,RapidRemit Co,Medium,James
+281,IronExchange Partners,Low,Priya
+479,SilverWallet Inc,Medium,Priya
+398,RapidLedger Group,High,Sarah
+438,FastLogistics Tech,Low,Priya
+133,NorthLogistics Inc,Low,Sarah
+877,ZenCapital Co,Medium,Sarah
+668,AtlasPay Co,Medium,Daniel
+228,SummitLabs Partners,Medium,Matt
+794,ApexSupply Inc,High,Chen
+603,GlobalFlow Bank,High,Daniel
+796,OrbitSupply Pty Ltd,Medium,Sarah
+825,BlueTrust Partners,High,Chen
+494,AtlasLedger Holdings,Medium,Matt
+274,AtlasRetail Pty Ltd,Low,Matt
+158,IronMint Inc,High,Daniel
+270,EchoRemit Inc,High,Matt
+297,BrightBridge Holdings,Low,Sarah
+276,NovaCash Ltd,Low,Chen
+512,PacificSupply Inc,Low,Chen
+970,OrbitExchange Partners,Low,Matt
+651,SummitCargo Partners,Low,Sarah
+421,IronCommerce Holdings,Medium,James
+918,PrimeBridge Tech,Medium,Priya
+933,CedarCash Partners,High,Chen
+936,AtlasLabs Bank,Medium,Matt
+126,NovaBridge Group,Medium,Chen
+532,LumenTrust Tech,Medium,Sarah
+769,SecureCash Bank,Medium,Priya
+306,SwiftCommerce Bank,Low,Priya
+323,GoldenFlow Partners,Medium,Matt
+639,NeoFin Co,Medium,Matt
+546,GlobalCash Inc,Low,Matt
+539,OrbitSupply Inc,Medium,Sarah
+541,SwiftCommerce Co,Medium,James
+787,ApexLedger Tech,Medium,Priya
+537,ApexRemit Bank,High,Sarah
+833,GoldenTrust Partners,High,Chen
+447,SummitPay Pty Ltd,High,Sarah
+409,SwiftBridge Tech,Low,Matt
+193,PioneerLedger Holdings,Medium,Daniel
+685,GoldenCommerce Holdings,Low,James
+788,HarborCommerce Inc,Medium,James
+110,IronTrade Ltd,Low,Priya
+873,FastTrust Co,Medium,Matt
+134,GoldenTrust Co,Low,Sarah
+508,ApexSupply Tech,Low,Daniel
+678,ApexLabs Pty Ltd,Low,Daniel
+190,ApexRetail Inc,High,Priya
+573,AtlasLedger Co,Low,Matt
+536,IronCoin Bank,Low,Matt
+343,NorthFlow Partners,Low,Daniel
+206,SilverMint Co,Medium,Priya
+513,ZenExchange Bank,Low,Priya
+239,PacificExchange Ltd,Low,Sarah
+157,GlobalBridge Bank,Low,Sarah
+275,AtlasCommerce Inc,Low,Matt
+766,SilverBridge Group,High,Sarah
+764,LumenBridge Group,Low,Priya
+723,UrbanExchange Co,High,Sarah
+428,BlueCommerce Solutions,Low,Sarah
+904,GlobalRetail Inc,High,Chen
+763,PioneerLogistics Tech,Medium,Matt
+687,FastCapital Holdings,High,Matt
+773,HarborLedger Ltd,Medium,Matt
+623,AtlasMint Pty Ltd,Medium,James
+372,GlobalTrust Holdings,High,Chen
+586,SecurePay Partners,Medium,James
+326,PeakRetail Pty Ltd,Medium,Matt
+960,VectorPay Pty Ltd,Low,James
+403,SecureFlow Group,Low,Matt
+588,OrbitExchange Holdings,High,Chen
+574,RapidSupply Ltd,Medium,Daniel
+854,PrimeCapital Bank,Medium,Daniel
+555,PeakLabs Co,High,Daniel
+737,CoralCoin Solutions,High,Daniel
+219,FastSupply Co,Medium,Daniel
+480,NovaCapital Co,Medium,Chen
+605,PeakLogistics Group,Low,Sarah
+192,ClearCommerce Inc,High,Chen
+988,NovaPay Co,Low,Matt
+771,PacificCash Pty Ltd,Low,Sarah
+367,NeoLedger Holdings,High,Sarah
+222,CoralRemit Pty Ltd,Low,Matt
+999,ZenCargo Group,Low,Daniel
+411,PeakCash Holdings,Medium,Chen
+571,CoralLogistics Partners,Low,Sarah
+566,SilverCash Group,Low,Sarah
+217,IronCash Bank,High,Sarah
+314,OrbitRemit Holdings,Medium,Sarah
+789,SilverFlow Inc,Medium,Daniel
+156,ApexLabs Inc,Medium,Chen
+383,GoldenCash Group,Medium,Matt
+450,VectorCommerce Holdings,Medium,Matt
+407,UrbanLedger Inc,Medium,Priya
+258,SecureFin Pty Ltd,Medium,Sarah
+893,NovaCargo Group,Medium,Chen
+649,SummitWallet Bank,Low,Daniel
+491,CoralFin Group,High,Sarah
+246,LumenLedger Ltd,Medium,Daniel
+458,PacificRetail Group,Low,Chen
+439,VectorMint Group,Low,Sarah
+830,OrbitSupply Partners,High,James
+955,OrbitFin Ltd,Medium,Priya
+974,OrbitLedger Tech,High,James
+662,IronLabs Bank,High,Sarah
+630,UrbanFin Ltd,Medium,Matt
+120,BrightExchange Tech,High,Sarah
+503,NeoFin Inc,Medium,Chen
+667,PrimeTrust Holdings,Low,Daniel
+829,VectorCargo Partners,Low,Daniel
+315,PioneerLogistics Inc,Low,Matt
+347,GlobalFin Partners,High,Matt
+891,IronCapital Co,Medium,Priya
+101,GlobalFlow Pty Ltd,Medium,James
+309,SecureLogistics Group,Medium,Chen
+878,SecureSupply Tech,Medium,Daniel
+855,ClearCommerce Tech,Low,James
+908,ZenFin Solutions,High,James
+165,SecureFlow Holdings,Medium,Sarah
+619,GoldenMint Pty Ltd,Low,Sarah
+200,UrbanWallet Ltd,Low,Matt
+212,SwiftExchange Ltd,Medium,Chen
+653,GlobalLabs Solutions,Medium,Sarah
+872,GoldenRetail Partners,Low,James
+140,PioneerSupply Bank,Medium,Priya
+300,OrbitTrust Partners,High,Priya
+733,VectorCapital Solutions,Low,Sarah
+356,ApexRemit Inc,Medium,James
+969,GlobalCapital Ltd,High,James
+308,VectorBridge Inc,Medium,Daniel
+474,BrightCommerce Bank,Low,Chen
+608,ApexLogistics Holdings,Low,Sarah
+711,GlobalCommerce Inc,Low,Chen
+931,UrbanMint Ltd,High,Matt
+399,HarborCommerce Bank,Medium,James
+924,ApexWallet Ltd,Low,Chen
+582,SilverRetail Bank,Medium,Sarah
+391,HarborFlow Group,Medium,Daniel
+511,BlueMint Inc,Low,Matt
+432,PeakLedger Inc,Low,Chen
+627,OrbitLabs Group,Medium,James
+729,NeoCommerce Partners,Medium,Priya
+287,PioneerCoin Partners,Low,Chen
+666,BlueCapital Tech,Medium,Daniel
+361,NovaExchange Pty Ltd,High,Chen
+951,VectorBridge Pty Ltd,Medium,Chen
+753,NovaTrust Holdings,Low,Matt
+912,NorthExchange Pty Ltd,Low,Daniel
+926,VectorLedger Pty Ltd,Medium,James
+119,OrbitBridge Group,Low,Chen
+700,PioneerCash Partners,High,Daniel
+724,OrbitCargo Co,High,James
+868,BluePay Partners,Low,Priya
+250,BlueCommerce Ltd,Low,Chen
+359,SummitCoin Partners,Medium,Sarah
+302,ClearCoin Holdings,Medium,Priya
+835,BlueExchange Bank,Low,Chen
+880,PacificLedger Solutions,Low,Daniel
+674,NorthWallet Solutions,High,Chen
+776,ApexCargo Tech,Medium,Priya
+169,NorthCargo Group,High,Daniel
+397,GlobalSupply Bank,Medium,Daniel
+973,AtlasMint Solutions,Low,Chen
+778,CedarFlow Solutions,Medium,Daniel
+799,VectorTrade Partners,High,Priya
+368,NeoFin Holdings,Medium,James
+553,NovaTrust Inc,Medium,Matt
+534,VectorLabs Inc,Low,Priya
+841,RapidRetail Holdings,High,Daniel
+542,EchoCommerce Bank,High,Sarah
+146,BlueWallet Holdings,Medium,James
+279,GoldenExchange Inc,Low,Priya
+925,ApexTrade Bank,Low,Sarah
+602,CoralTrade Solutions,Medium,Matt
+416,EchoMint Inc,Medium,Matt
+635,VectorSupply Solutions,Low,James
+792,PioneerBridge Bank,Low,Priya
+576,UrbanSupply Holdings,Medium,Sarah
+141,UrbanBridge Group,Medium,Priya
+531,PrimeCoin Solutions,High,James
+215,NeoTrade Pty Ltd,Medium,Daniel
+657,SecureRemit Co,Medium,Chen
+629,VectorLogistics Solutions,Medium,Matt
+686,ZenRetail Inc,Low,James
+248,EchoRetail Holdings,Low,Sarah
+983,LumenFlow Co,Low,Daniel
+471,ClearCoin Tech,Medium,Matt
+690,ZenCoin Co,Medium,James
+172,GoldenPay Group,Medium,Daniel
+844,BrightMint Ltd,Low,Sarah
+790,HarborLogistics Partners,Medium,Priya
+358,FastSupply Tech,Medium,Chen
+131,LumenSupply Bank,Medium,Daniel
+271,ApexMint Ltd,Low,Sarah
+352,NeoExchange Holdings,Low,Matt
+492,NorthLabs Inc,Low,Chen
+544,OrbitLedger Solutions,Medium,James
+898,ZenFin Partners,High,Sarah
+578,CedarCargo Holdings,High,James
+775,NovaMint Group,Low,Priya
+634,EchoBridge Tech,Low,Matt
+463,GoldenCommerce Solutions,Low,Matt
+779,SecureFin Tech,High,Sarah
+346,GlobalCommerce Holdings,High,James
+987,CedarPay Holdings,Medium,Chen
+739,PrimeRemit Co,Medium,Daniel
+858,OrbitLogistics Ltd,Medium,Daniel
+452,ClearCash Holdings,Low,Chen
+230,HarborFin Co,Low,Sarah
+449,NorthTrade Pty Ltd,Medium,Sarah
+112,ZenBridge Ltd,Low,Priya
+344,NorthFin Inc,Medium,Daniel
+691,PacificCommerce Inc,Medium,Sarah
+850,ClearBridge Inc,Medium,Chen
+677,NeoExchange Bank,High,Sarah
+738,NorthMint Group,Medium,Priya
+903,BlueCargo Holdings,High,Matt
+948,SilverSupply Co,Low,Priya
+747,NovaWallet Group,Low,Sarah
+468,SummitCargo Ltd,Medium,Sarah
+138,SummitBridge Holdings,High,James
+978,CedarFin Bank,Medium,James
+954,NeoBridge Partners,Low,James
+420,BrightFlow Bank,Low,Sarah
+781,PacificCoin Inc,High,Matt
+742,CedarTrust Holdings,High,Matt
+173,BlueLedger Group,Medium,Chen
+155,IronFlow Tech,Medium,Priya
+899,OrbitFin Inc,High,Sarah
+943,GoldenLabs Solutions,High,Sarah
+633,LumenCash Bank,High,Matt
+614,SummitLedger Group,Medium,Sarah
+256,PacificCash Co,Medium,James
+676,ClearCash Tech,Low,Chen
+139,VectorCoin Bank,Medium,Sarah
+284,PioneerFin Tech,High,Daniel
+932,NovaCapital Bank,High,Priya
+958,UrbanSupply Ltd,Low,Sarah
+132,NorthCommerce Holdings,Low,Matt
+595,AtlasCash Bank,Medium,Daniel
+871,GlobalPay Ltd,High,Matt
+484,NovaExchange Tech,Medium,Matt
+378,NorthLabs Ltd,High,Chen
+575,CedarFin Group,Medium,Matt
+939,ApexExchange Ltd,High,James
+390,AtlasBridge Solutions,Low,Daniel
+464,ClearFin Holdings,High,Priya
+559,IronBridge Ltd,Medium,James
+481,AtlasLabs Holdings,Low,Chen
+839,PioneerMint Co,Low,Daniel
+887,GlobalPay Co,Low,Daniel
+540,CoralFin Solutions,High,Chen
+382,RapidCapital Tech,Medium,James
+616,HarborTrade Ltd,Low,Matt
+320,EchoMint Tech,Medium,Priya
+876,IronLedger Holdings,High,James
+498,BrightSupply Ltd,Low,Priya
+305,OrbitCoin Bank,Medium,James
+252,UrbanFin Bank,Low,Daniel
+338,ZenTrade Bank,High,Daniel
+800,GoldenWallet Ltd,High,Priya
+638,BrightLabs Pty Ltd,Low,Sarah
+518,OrbitExchange Pty Ltd,Low,Chen
+617,EchoLabs Holdings,High,Chen
+879,BrightCoin Co,Medium,Daniel
+840,ClearFin Group,Low,Priya
+137,NorthRemit Solutions,Medium,Sarah
+670,NeoBridge Co,High,Matt
+301,UrbanLogistics Tech,Low,Daniel
+717,SummitTrust Co,Medium,Chen
+235,LumenLedger Co,Medium,Chen
+905,ApexPay Bank,Medium,James
+643,UrbanCargo Holdings,High,James
+292,SilverWallet Ltd,Medium,Priya
+278,ApexRetail Group,Medium,Priya
+152,IronLogistics Group,Medium,Priya
+752,LumenPay Holdings,Medium,Chen
+604,PacificExchange Co,Low,Priya
+628,HarborFlow Partners,High,Matt
+257,GlobalExchange Ltd,Medium,Sarah
+648,VectorFlow Co,Medium,Sarah
+318,IronExchange Bank,Medium,Sarah
+584,BrightTrust Tech,Medium,Sarah
+618,LumenCargo Holdings,Low,Daniel
+151,PrimeFlow Inc,Low,Chen
+734,BrightCapital Bank,Medium,Daniel
+247,HarborExchange Co,Low,Priya
+910,IronTrust Solutions,Low,Chen
+585,CedarMint Group,High,Priya
+530,GoldenExchange Ltd,Low,Priya
+290,NorthSupply Pty Ltd,Medium,Matt
+424,ClearCargo Bank,Low,Sarah
+699,SummitCommerce Inc,High,Priya
+545,ApexCash Partners,High,Priya
+889,VectorTrust Group,Low,Chen
+744,ClearFin Ltd,Medium,Sarah
+971,FastLabs Tech,Medium,Chen
+129,VectorFin Ltd,High,Priya
+806,NeoRetail Inc,Medium,Matt
+694,BrightLabs Bank,Medium,Sarah
+179,SecureLedger Inc,Medium,Matt
+770,NovaTrade Ltd,Low,Daniel
+393,GlobalLedger Bank,Medium,James
+963,CedarExchange Holdings,Medium,Sarah
+149,SwiftCargo Pty Ltd,Medium,Daniel
+935,AtlasCommerce Partners,Medium,Priya
+493,ClearTrust Bank,High,Chen
+708,AtlasFlow Pty Ltd,Medium,Sarah
+808,PioneerCash Tech,Medium,Chen
+392,FastCash Pty Ltd,Low,Sarah
+997,OrbitRetail Partners,Medium,Priya
+128,PacificCoin Partners,Low,Chen
+330,EchoLogistics Holdings,High,James
+100,BrightSupply Bank,Low,Chen
+394,EchoCapital Group,Low,Priya
+384,GlobalWallet Holdings,Medium,Daniel
+109,OrbitWallet Holdings,Medium,Chen
+262,SummitLedger Bank,Medium,Chen
+286,SwiftRetail Pty Ltd,Medium,Priya
+170,NeoCommerce Group,Low,James
+295,EchoExchange Bank,Low,Sarah
+938,NorthTrade Group,Low,Chen
