@@ -60806,7 +60806,7 @@ const CHECKDATA = JSON.parse(document.getElementById('check-data').textContent);
 // ---------------------------------------------------------------- state
 // ?sandbox in the URL: a throwaway workbook (separate storage, never reads or writes my_answers.*)
 const SANDBOX = new URLSearchParams(location.search).has('sandbox');
-const KEY = SANDBOX ? 'ex2wb:sandbox' : 'ex2wb:v1';
+const KEY = SANDBOX ? 'sqlenv:sandbox' : 'sqlenv:v2';  // new key so queries saved by earlier versions of this page aren't reloaded
 let state = { current: 'q1a', items: {} };
 try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.items) state = s; } catch {}
 if (!ITEMS.some(it => it.id === state.current)) state.current = ITEMS[0].id;
